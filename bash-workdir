@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-WORKDIR="~/.workdir"
+WORKDIR="/tmp/workdir"
 
 workdir()
 {
-  dir=$(pwd)
-  echo "$dir" > "$WORKDIR"
+  echo pwd > "$WORKDIR"
   echo "Work directory defined."
 }
 
