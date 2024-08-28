@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+################################################################
+#
+# Import the following code to your `bashrc` by adding the
+# following line (adjust according to file location):
+#
+# `. path/to/bash-workdir.sh`
+# 
+# When inside your current work directory, type:
+#
+# `workdir`
+#
+# It will memorize the current directory as your main workplace.
+# 
+# Now, whenever you need to move out of this directory, either to
+# do something else, or when you open a new terminal window,
+# simply type:
+#
+# `gotowork`
+#
+# And you'll return to your defined workdir.
+#
+# Quick, simple, and easy. There's nothing else to it.
+#
+# You can change your defined workdir by typing `workdir` again.
+#
+# Current work directory stays saved in `$HOME/.workdir`
+#
+# To change config file location, edit variable WORKDIR in the
+# script.
+#
+#################################################################
+
+WORKDIR="~/.workdir"
+
+workdir()
+{
+  dir=$(pwd)
+  echo "$dir" > "$WORKDIR"
+  echo "Work directory defined."
+}
+
+gotowork()
+{
+  if [ -f "$WORKDIR" ]; then
+    dir=$(cat ~/.workdir)
+    if [ -d "$dir" ]; then
+      cd "$dir"
+    else
+      echo "Error: work directory does not exist. You must redefine it." >&2
+    fi
+  else
+    echo "Error: work directory not defined." >&2
+  fi
+}
+
