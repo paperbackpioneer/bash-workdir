@@ -15,6 +15,7 @@ gotowork()
     dir=$(cat ~/.workdir)
     if [ -d "$dir" ]; then
       cd "$dir"
+      echo "Welcome back!"
     else
       echo "Error: work directory does not exist. You must redefine it." >&2
     fi
